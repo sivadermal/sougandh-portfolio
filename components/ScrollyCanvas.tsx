@@ -21,8 +21,6 @@ export default function ScrollyCanvas({
   const currentFrameRef = useRef<number>(0);
   const animationFrameIdRef = useRef<number | null>(null);
 
-  const [loadedCount, setLoadedCount] = useState<number>(0);
-  const [activeFrameDisplay, setActiveFrameDisplay] = useState<number>(1);
   const [activeChapter, setActiveChapter] = useState<number>(0);
 
   const getFrameUrl = useCallback(
@@ -108,7 +106,6 @@ export default function ScrollyCanvas({
     firstImg.src = getFrameUrl(0);
     firstImg.onload = () => {
       imagesRef.current[0] = firstImg;
-      setLoadedCount(1);
       drawFrame(0);
 
       // 2. Load the remaining frames in progressive batches
@@ -125,7 +122,6 @@ export default function ScrollyCanvas({
           img.src = getFrameUrl(i);
           img.onload = () => {
             imagesRef.current[i] = img;
-            setLoadedCount((prev) => prev + 1);
             batchLoaded++;
             if (batchLoaded === batchEnd - index) {
               index = batchEnd;
@@ -176,7 +172,6 @@ export default function ScrollyCanvas({
       if (currentInt !== lastRenderedFrame) {
         drawFrame(currentInt);
         lastRenderedFrame = currentInt;
-        setActiveFrameDisplay(currentInt + 1);
 
         // Update active chapter based on progression
         const progress = currentInt / (totalFrames - 1);
@@ -250,7 +245,6 @@ export default function ScrollyCanvas({
   ];
 
   const currentChapter = chapters[activeChapter];
-  // const loadPercentage = Math.round((loadedCount / totalFrames) * 100);
 
   return (
     <div
@@ -274,12 +268,6 @@ export default function ScrollyCanvas({
 
         {/* Editorial Project Header (Top Left) */}
         <div className="absolute top-24 left-6 sm:left-12 z-20 flex flex-col gap-1 pointer-events-none">
-          {/* <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#c5a880] animate-pulse" />
-            <span className="text-[10px] font-mono tracking-[0.28em] text-[#c5a880] uppercase">
-              Featured Project · Residence N° 01
-            </span>
-          </div> */}
           <h1 className="text-xl sm:text-2xl font-serif text-white font-light tracking-wide">
             The Master Sanctuary
           </h1>
@@ -287,24 +275,6 @@ export default function ScrollyCanvas({
             Kannur, Kerala · Photometric 3D Spatial Continuum
           </p>
         </div>
-
-        {/* Spatial Axis Tracker (Top Right) */}
-        {/* <div className="absolute top-24 right-6 sm:right-12 z-20 flex items-center gap-3">
-          {loadPercentage < 100 ? (
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[10px] font-mono text-zinc-300 tracking-widest uppercase">
-              <div className="w-2 h-2 rounded-full border border-t-[#c5a880] border-white/20 animate-spin" />
-              <span>Loading Scene {loadPercentage}%</span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[11px] font-mono text-zinc-300">
-              <span className="text-[#c5a880] font-medium tracking-widest">
-                AXIS {String(activeFrameDisplay).padStart(3, "0")}
-              </span>
-              <span className="text-zinc-600">/</span>
-              <span className="text-zinc-400">{totalFrames}</span>
-            </div>
-          )}
-        </div> */}
 
         {/* Cinematic Chapter Story Overlay (Center-Left) */}
         <div className="absolute left-6 sm:left-12 md:left-16 bottom-16 sm:bottom-20 max-w-xl z-20 pointer-events-none">
