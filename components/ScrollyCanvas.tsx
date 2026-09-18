@@ -250,7 +250,7 @@ export default function ScrollyCanvas({
   ];
 
   const currentChapter = chapters[activeChapter];
-  const loadPercentage = Math.round((loadedCount / totalFrames) * 100);
+  // const loadPercentage = Math.round((loadedCount / totalFrames) * 100);
 
   return (
     <div
