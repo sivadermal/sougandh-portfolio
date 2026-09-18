@@ -18,37 +18,38 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#faf8f5] dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 transition-colors duration-500">
-      {/* Editorial Studio Navigation */}
+    <main className="min-h-screen bg-[#0a0a0c] text-white">
+      {/* Navigation Header */}
       <Navbar />
 
-      {/* 192-Frame Architectural Canvas Walkthrough Hero */}
+      {/* 192-Frame Canvas Scrollytelling Engine — Direct Hero Walkthrough */}
       <ScrollyCanvas
         totalFrames={192}
         frameFolder="/sequence/bedroom"
         onExploreClick={scrollToWorks}
       />
 
-      {/* Curated Editorial Projects Showcase & Case Studies */}
+      {/* Curated Projects Gallery & Filterable Case Studies */}
       <ProjectsGallery />
 
-      {/* Interactive Multi-Angle Perspective Comparison Studio */}
+      {/* Interactive Multi-Angle Perspective Comparison Stage */}
       <ProjectViewer />
 
-      {/* Tactile Materiality Flat-Lay Palette */}
+      {/* Tactile Materiality Palette & Swatches */}
       <MaterialitySection />
 
-      {/* The Studio, Civil Engineering Pedigree & Credentials */}
+      {/* Biography, Polytechnic Background & Skills */}
       <AboutSection />
 
-      {/* Architectural Services & 4-Stage Turnkey Workflow */}
+      {/* Design Services & 4-Stage Workflow */}
       <ServicesSection />
 
-      {/* Commission & Consultation Inquiry */}
+      {/* Contact & Inquiries Form + PDF Download */}
       <ContactSection />
 
-      {/* Architectural Monograph Footer */}
+      {/* Footer */}
       <Footer />
     </main>
   );
 }
+

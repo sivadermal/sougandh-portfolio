@@ -20,7 +20,6 @@ export default function ScrollyCanvas({
   const targetFrameRef = useRef<number>(0);
   const currentFrameRef = useRef<number>(0);
   const animationFrameIdRef = useRef<number | null>(null);
-
   const [activeChapter, setActiveChapter] = useState<number>(0);
 
   const getFrameUrl = useCallback(
